@@ -475,6 +475,14 @@ Closes #[issue-number]
 -   **Pattern**: Ask "what's the minimum viable first step?" before comprehensive implementation
 -   **Pattern**: 1-hour implementation chunks are optimal for maintaining focus and seeing progress
 
+### Web Server Development Patterns (2025-10-18)
+-   **Pattern**: Always test core functionality immediately after implementation - directory routing is fundamental for web servers
+-   **Mistake**: Assuming servers will handle directories correctly without proper testing - led to user-facing errors
+-   **Discovery**: Both Node.js and Python require custom logic to properly serve index.html for directory requests
+-   **Pattern**: Dual-server implementation provides flexibility but requires maintaining consistency across both implementations
+-   **Pattern**: Use fs.stat() in Node.js to detect directories before attempting to read them as files
+-   **Pattern**: Override do_GET() method in Python's SimpleHTTPRequestHandler for custom directory routing
+
 ### Common Mistakes to Avoid
 -   **Creating overly comprehensive initial plans** - Break complex projects into 1-hour phases instead
 -   **Trying to implement everything at once** - Start with minimum viable implementation, test, then expand
