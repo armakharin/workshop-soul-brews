@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Navigator | Choose Your Destination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .site-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .site-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .site-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .site-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .site-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .site-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .site-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .footer {
+            margin-top: 3rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .sites-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .site-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Site Navigator</h1>
+            <p>Choose your destination below</p>
+        </div>
+
+        <div class="sites-grid">
+            <div class="site-card" onclick="navigateToSite('glm1')">
+                <span class="site-icon">🕵️‍♂️</span>
+                <div class="site-title">Digital Fraud Detective I</div>
+                <div class="site-description">Command Center for fraud detection and analysis</div>
+                <a href="glm1/" class="site-button">Enter Site I</a>
+            </div>
+
+            <div class="site-card" onclick="navigateToSite('glm2')">
+                <span class="site-icon">🔍</span>
+                <div class="site-title">Digital Fraud Detective II</div>
+                <div class="site-description">Advanced investigation command center</div>
+                <a href="glm2/" class="site-button">Enter Site II</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Select a site to begin your investigation • Both sites feature fraud detection tools and analytics</p>
+        </div>
+    </div>
+
+    <script>
+        function navigateToSite(site) {
+            // Add a smooth transition effect
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = site + '/';
+            }, 300);
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '1') navigateToSite('glm1');
+                if (e.key === '2') navigateToSite('glm2');
+            });
+
+            // Add hover sound effects (optional)
+            const cards = document.querySelectorAll('.site-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // You could add a subtle sound effect here
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

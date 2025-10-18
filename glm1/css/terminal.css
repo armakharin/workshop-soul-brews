@@ -1,0 +1,497 @@
+/* Terminal and Command Center Styles */
+
+/* Terminal Loader */
+.terminal-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.terminal-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.terminal-content {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    color: #ff0040;
+    text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040;
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+.terminal-line {
+    margin: 0.5rem 0;
+    opacity: 0;
+    animation: terminal-line-appear 0.5s ease-out forwards;
+}
+
+.terminal-line:nth-child(1) { animation-delay: 0.5s; }
+.terminal-line:nth-child(2) { animation-delay: 1.5s; }
+.terminal-line:nth-child(3) { animation-delay: 2.5s; }
+.terminal-line:nth-child(4) { animation-delay: 3.5s; }
+
+@keyframes terminal-line-appear {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.terminal-line.typing::after {
+    content: '_';
+    animation: cursor-blink 1s ease-in-out infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Command Center Interface */
+.command-center {
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a0000 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.command-center::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 64, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 64, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Terminal Window */
+.terminal-window {
+    background: #0a0a0a;
+    border: 2px solid #330011;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Share Tech Mono', monospace;
+    box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+}
+
+.terminal-header {
+    background: #1a0000;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #330011;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-title {
+    color: #ff0040;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #330011;
+}
+
+.terminal-control.close { background: #ff0040; }
+.terminal-control.minimize { background: #ff6080; }
+.terminal-control.maximize { background: #ff90a0; }
+
+.terminal-body {
+    padding: 1rem;
+    color: #cccccc;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #330011;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #ff0040;
+}
+
+.terminal-prompt {
+    color: #ff0040;
+    margin-right: 0.5rem;
+}
+
+.terminal-command {
+    color: #ffffff;
+}
+
+.terminal-output {
+    margin-left: 1rem;
+    color: #cccccc;
+}
+
+.terminal-error {
+    color: #ff6080;
+}
+
+.terminal-success {
+    color: #00ff80;
+}
+
+.terminal-warning {
+    color: #ffff00;
+}
+
+/* Console Log Styles */
+.console-log {
+    background: #0a0a0a;
+    border: 1px solid #330011;
+    border-radius: 4px;
+    padding: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 1rem 0;
+}
+
+.log-entry {
+    margin: 0.25rem 0;
+    padding: 0.25rem 0;
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.log-entry:hover {
+    border-left-color: #ff0040;
+    padding-left: 0.5rem;
+}
+
+.log-timestamp {
+    color: #666666;
+    margin-right: 0.5rem;
+}
+
+.log-level-info { color: #cccccc; }
+.log-level-warn { color: #ffff00; }
+.log-level-error { color: #ff0040; }
+.log-level-success { color: #00ff80; }
+.log-level-debug { color: #808080; }
+
+/* HUD Display */
+.hud-display {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #330011;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Orbitron', monospace;
+    position: relative;
+    overflow: hidden;
+}
+
+.hud-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff0040, transparent);
+    animation: hud-scan 3s linear infinite;
+}
+
+@keyframes hud-scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.hud-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.hud-item {
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid #330011;
+    border-radius: 4px;
+    background: rgba(255, 0, 64, 0.05);
+}
+
+.hud-label {
+    font-size: 0.7rem;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+.hud-value {
+    font-size: 1.2rem;
+    color: #ff0040;
+    font-weight: 700;
+    text-shadow: 0 0 5px #ff0040;
+}
+
+.hud-unit {
+    font-size: 0.8rem;
+    color: #cccccc;
+    margin-left: 0.25rem;
+}
+
+/* Status Monitor */
+.status-monitor {
+    background: #0a0a0a;
+    border: 2px solid #330011;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #330011;
+}
+
+.status-title {
+    color: #ff0040;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pulse-active 2s ease-in-out infinite;
+}
+
+.status-indicator.online { background: #00ff00; box-shadow: 0 0 5px #00ff00; }
+.status-indicator.offline { background: #ff0040; box-shadow: 0 0 5px #ff0040; }
+.status-indicator.warning { background: #ffff00; box-shadow: 0 0 5px #ffff00; }
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(255, 0, 64, 0.05);
+    border: 1px solid #330011;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.status-item:hover {
+    border-color: #ff0040;
+    background: rgba(255, 0, 64, 0.1);
+}
+
+.status-label {
+    color: #cccccc;
+    font-size: 0.9rem;
+}
+
+.status-value {
+    color: #ff0040;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* Progress Bars */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #0a0a0a;
+    border: 1px solid #330011;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0040, #ff6080);
+    border-radius: 3px;
+    transition: width 1s ease-out;
+    box-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.progress-text {
+    color: #cccccc;
+}
+
+.progress-percentage {
+    color: #ff0040;
+    font-weight: 700;
+}
+
+/* Alert System */
+.alert {
+    border: 1px solid #330011;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    position: relative;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 2px 0 0 2px;
+}
+
+.alert-info::before { background: #0080ff; }
+.alert-warning::before { background: #ffff00; }
+.alert-error::before { background: #ff0040; }
+.alert-success::before { background: #00ff80; }
+
+.alert-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.alert-info .alert-title { color: #0080ff; }
+.alert-warning .alert-title { color: #ffff00; }
+.alert-error .alert-title { color: #ff0040; }
+.alert-success .alert-title { color: #00ff80; }
+
+.alert-message {
+    color: #cccccc;
+    line-height: 1.5;
+}
+
+/* Code Display */
+.code-block {
+    background: #0a0a0a;
+    border: 1px solid #330011;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.code-line {
+    margin: 0.25rem 0;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.code-line-number {
+    position: absolute;
+    left: 0;
+    color: #666666;
+    user-select: none;
+    width: 2rem;
+    text-align: right;
+}
+
+.code-keyword { color: #ff6080; }
+.code-string { color: #00ff80; }
+.code-number { color: #ffff00; }
+.code-comment { color: #666666; font-style: italic; }
+.code-function { color: #0080ff; }
+.code-variable { color: #ffffff; }
+
+/* Terminal Responsive */
+@media (max-width: 768px) {
+    .terminal-content {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .terminal-body {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+
+    .hud-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .code-block {
+        font-size: 0.75rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-content {
+        font-size: 0.9rem;
+    }
+
+    .hud-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .console-log {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+}
